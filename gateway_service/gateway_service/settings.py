@@ -25,8 +25,7 @@ SECRET_KEY = 'django-insecure-l9c+q^$69tcli&yv6w=yc-d5vrx70!m81j7$r$6l@ef8=1(+as
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '10.42.0.225']
 
 # Application definition
 
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'vstream_gateway',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +48,20 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://10.17.35.84",
+    "http://localhost:3000",  # Frontend URL
+]
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_HEADERS = [
+    "Authorization",
+    "Content-Type",
 ]
 
 ROOT_URLCONF = 'gateway_service.urls'
@@ -111,6 +125,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+APPEND_SLASH = False
 
 
 # Static files (CSS, JavaScript, Images)

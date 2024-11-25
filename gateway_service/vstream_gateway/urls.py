@@ -1,8 +1,7 @@
 from django.urls import path
-from . import views
+from .views import gateway_route
 
 urlpatterns = [
-    path('login/', views.gateway_login, name='gateway_login'),
-    path('register/', views.gateway_register, name='gateway_register'),
-    path('authorize_user/', views.gateway_authorize_user, name='gateway_authorize_user'),
+    path('<str:service_action>/', gateway_route, name='gateway_route'),
+    path('videos', gateway_route, {'service_action': 'fetch_videos'}),
 ]
